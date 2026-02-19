@@ -5,46 +5,40 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     platform: 'X (Twitter)',
     url: 'https://x.com/co3spiral',
-    icon: 'fab fa-x-twitter',
-    description: 'Sinais de alta frequência e atualizações do ecossistema on-chain.'
+    icon: 'custom-x',
+    description: ''
   },
   {
     platform: 'Instagram',
     url: 'https://www.instagram.com/co_3spiral',
     icon: 'fab fa-instagram',
-    description: 'Laboratório visual e curadoria de motion design orgânico.'
+    description: ''
   },
   {
     platform: 'Zora',
-    url: 'https://zora.co/@3spi_',
-    icon: 'fas fa-eye',
-    description: 'A fundação imutável da nossa mídia e coleções digitais.'
+    url: 'https://zora.co/@3spiral',
+    icon: 'custom-zora',
+    description: ''
+  },
+  {
+    platform: 'Objkt',
+    url: 'https://objkt.com/users/tz1hjc5fAb5abh69VadryWi9E3qfT3dEKkHk',
+    icon: 'custom-objkt',
+    description: ''
   }
 ];
 
 export const GALLERY: ArtPiece[] = [
   { 
     id: '1', 
-    title: '3SPIRAL GENESIS', 
-    imageUrl: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&q=80&w=1200', 
-    platform: 'Zora' 
+    title: 'Bosque Gracias Summer 2026', 
+    imageUrl: 'https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeie5dbiugaytr5jvc45yhnmaeso36tr4oado7rdzvxtq4vshox4pwy', 
+    description: 'Bosque Gracias é um território artístico familiar na Patagônia Argentina que une natureza, tecnologia e criação coletiva. Após incêndios devastadores em 2026, o projeto de documentação da residência se transformou em um filme sobre memória, perda e resistência.'
   },
   { 
     id: '2', 
-    title: 'VOID STUDY // 04', 
-    imageUrl: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1200', 
-    platform: 'Instagram' 
-  },
-  { 
-    id: '3', 
-    title: 'SIGNAL TRACE', 
-    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200', 
-    platform: 'X (Twitter)' 
-  },
-  { 
-    id: '4', 
-    title: 'RECURSIVE FLOW', 
-    imageUrl: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1200', 
-    platform: 'Zora' 
+    title: 'Nostalgia Utópica', 
+    imageUrl: 'https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeihgzpmuyaxrolt37rvsv6usqcovfrqgqpcylswqghd7rfbxuisdve', 
+    description: 'Esta coleção transforma memórias em futuro, recriando estéticas digitais da infância — pixels, colagens, brilhos e universos online — a partir de uma perspectiva trans e diaspórica. Um gesto colaborativo de reescrever o passado para imaginar novas possibilidades e ocupar o centro das narrativas visuais.'
   }
 ];

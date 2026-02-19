@@ -10,8 +10,8 @@ export interface ArtPiece {
   id: string;
   title: string;
   imageUrl: string;
-  platform: string;
+  platform?: string;
+  description?: string;
 }
 
-// Added missing Language type
 export type Language = 'en' | 'pt' | 'es';

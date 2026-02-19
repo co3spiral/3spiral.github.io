@@ -24,24 +24,14 @@ const Manifesto: React.FC = () => {
     <section id="about" ref={sectionRef} className="py-24 md:py-40 px-6 bg-black relative">
       <div className="max-w-5xl mx-auto">
         <div className={`transition-all duration-1000 transform ${visible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-          <h2 className="text-4xl md:text-8xl font-bold leading-none mb-16 tracking-tighter">
-            O futuro é <span className="text-white/30 italic">renderizado</span>.
+          <h2 className="text-4xl md:text-8xl font-bold leading-none mb-16 tracking-tighter uppercase">
+            O QUE SOMOS
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <p className="text-xl md:text-3xl text-white/70 leading-relaxed font-light pixel-font">
-              3spiral é um coletivo que vive na intersecção da descentralização e evolução estética. Acreditamos na espiral: infinita e recorrente.
+          <div className="w-full">
+            <p className="text-lg md:text-2xl text-white/70 leading-relaxed font-light tech-font">
+              3spiral é um coletivo transdisciplinar formado por artistas trans que atuam no audiovisual, performance, fotografia, cultura do skate e experimentação digital. O nome evoca a simultaneidade de passado, presente e futuro, articulada ao número 3 como referência à Web3 e às imaginações de uma diáspora cibernética. Enraizado em memórias afro-brasileiras e indígenas, o coletivo investiga multiplicidades de gênero, política do corpo e tecnologias ancestrais em diálogo com mídias contemporâneas. Sua prática articula ritual, movimento urbano e estética digital para tensionar binarismos coloniais e expandir narrativas sobre existências trans.
             </p>
-            <div className="space-y-10">
-              <div className="border-l-2 border-white/10 pl-6">
-                <h4 className="text-lg font-bold uppercase tracking-widest mb-2 opacity-50">Cross-Platform</h4>
-                <p className="text-white/40 text-sm font-mono">Identidade unificada: X, IG, Zora.</p>
-              </div>
-              <div className="border-l-2 border-white/10 pl-6">
-                <h4 className="text-lg font-bold uppercase tracking-widest mb-2 opacity-50">On-Chain</h4>
-                <p className="text-white/40 text-sm font-mono">Arte que vive para sempre no protocolo.</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
