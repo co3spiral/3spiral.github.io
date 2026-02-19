@@ -1,19 +1,32 @@
 
 import React from 'react';
-import { GALLERY } from '../constants';
+import { GALLERY, TRANSLATIONS } from '../constants';
 import { ArtPiece } from '../types';
+import { useLang } from './LanguageContext';
 
 interface GalleryProps {
   onSelectProject: (project: ArtPiece) => void;
 }
 
 const Gallery: React.FC<GalleryProps> = ({ onSelectProject }) => {
+  const { lang } = useLang();
+  const t = TRANSLATIONS[lang];
+
+  // Helper to get translatable description for each gallery item
+  const getTranslatableDesc = (id: string) => {
+    if (id === '1') return t.bosqueShortDesc;
+    if (id === '2') return t.nostalgiaShortDesc;
+    return '';
+  };
+
   return (
     <section id="work" className="py-20 md:py-40 px-4 md:px-6 bg-black">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 md:mb-32 gap-8">
           <div className="flex items-center gap-6">
-            <h3 className="text-6xl md:text-[10rem] font-black tracking-tighter leading-none">ARQUIVO</h3>
+            <h3 className="text-6xl md:text-[10rem] font-black tracking-tighter leading-none">
+              {t.archiveTitle}
+            </h3>
           </div>
         </div>
 
@@ -36,7 +49,7 @@ const Gallery: React.FC<GalleryProps> = ({ onSelectProject }) => {
                 <div className="max-w-[85%]">
                   <h4 className="text-2xl md:text-4xl font-bold uppercase tracking-tight">{item.title}</h4>
                   <p className="text-white/40 text-sm mt-3 leading-relaxed tech-font line-clamp-3">
-                    {item.description}
+                    {getTranslatableDesc(item.id)}
                   </p>
                 </div>
                 <div className="h-10 w-10 flex items-center justify-center border border-white/10 rounded-full group-hover:bg-white group-hover:text-black transition-all flex-shrink-0">
