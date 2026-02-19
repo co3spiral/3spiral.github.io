@@ -6,6 +6,8 @@ import Manifesto from './components/Manifesto';
 import Gallery from './components/Gallery';
 import Network from './components/Network';
 import { ArtPiece } from './types';
+import { useLang } from './components/LanguageContext';
+import { TRANSLATIONS } from './constants';
 
 const VideoPlayer: React.FC<{ src: string }> = ({ src }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -102,6 +104,8 @@ const Lightbox: React.FC<{
 const AboutUs: React.FC = () => {
   const [kaeuWorksOpen, setKaeuWorksOpen] = useState(false);
   const [qabWorksOpen, setQabWorksOpen] = useState(false);
+  const { lang } = useLang();
+  const t = TRANSLATIONS[lang];
   
   const kaeuImg = "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeicdfruzoptatjv7q7s6qzsx7w27xsvpz4jm3lqyfkqbyone3squ7a";
   const qabImg = "https://qabqabqab.github.io/imagens/foto-perfil.jpg";
@@ -110,7 +114,7 @@ const AboutUs: React.FC = () => {
   return (
     <section className="py-24 md:py-40 px-6 bg-black border-t border-white/5">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-6xl md:text-9xl font-black tracking-tighter mb-20 opacity-90">SOBRE NÓS</h2>
+        <h2 className="text-6xl md:text-9xl font-black tracking-tighter mb-20 opacity-90 uppercase">{t.aboutTitle}</h2>
         
         {/* PERFIL KAÊU */}
         <div className="mb-24">
@@ -120,10 +124,8 @@ const AboutUs: React.FC = () => {
             </div>
             <div className="space-y-6">
               <h3 className="text-4xl md:text-5xl font-bold tracking-tight uppercase">KAÊU ESUNA</h3>
-              <p className="text-white/50 text-base md:text-lg leading-relaxed tech-font font-light">
-                Kaêu Esuna é multiartista quilombola cuja prática atravessa performance, audiovisual, direção criativa e arte educação. Iniciou no teatro em 2014 na Casa de Cultura Cora Coralina e formou se em Teatro pela Etec de Artes em 2020, onde apresentou o trabalho autoral As coisas que deixei ali. É fundador e diretor do projeto teatral Buraco Negro, estreado em 2024 com fomento do Programa VAI, e foi integrante da CIA DezAfio, atuando em teatro sensorial, teatro de rua e intervenções no centro de São Paulo. Em 2022 assumiu a direção criativa do projeto Quem vê close, não vê corre e atuou na mediação e disposição de obras na exposição Inflamação, de Anish Kapoor, ampliando sua experiência em processos curatoriais.
-                <br/><br/>
-                Em 2025 aprofundou sua atuação no audiovisual ao ser selecionado para o núcleo de Direção de Fotografia do Instituto Criar, onde dirigiu Clamorfia e assinou a direção de fotografia da videoarte YPY. Atuou também na produção de elenco, produção de set e operação de câmera no videocast Vem Aí e realizou o making of do fashion filme A Retomada do Equilíbrio. É cofundador do coletivo 3spiral, núcleo transdisciplinar que investiga Web3, estética trans e memória na diáspora. Sua pesquisa articula gênero, território e ancestralidade a partir de uma perspective afro brasileira e indígena, compreendendo o quilombo como tecnologia histórica de confluência e resistência, mobilizando corpo e imagem como estratégias de reinvenção simbólica e afirmação de corpos dissidente.
+              <p className="text-white/50 text-base md:text-lg leading-relaxed tech-font font-light whitespace-pre-wrap">
+                {t.kaeuBio}
               </p>
             </div>
           </div>
@@ -133,7 +135,7 @@ const AboutUs: React.FC = () => {
               onClick={() => setKaeuWorksOpen(!kaeuWorksOpen)}
               className="flex items-center justify-between w-full group py-4 hover:opacity-80 transition-opacity"
             >
-              <h3 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase">TRABALHOS</h3>
+              <h3 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase">{t.worksTitle}</h3>
               <div className={`w-12 h-12 flex items-center justify-center border border-white/10 rounded-full transition-transform duration-500 ${kaeuWorksOpen ? 'rotate-180' : ''}`}>
                 <i className="fas fa-chevron-down text-sm"></i>
               </div>
@@ -145,12 +147,6 @@ const AboutUs: React.FC = () => {
                   <div key={i} className="space-y-8">
                     <div className="border border-white/10 bg-black overflow-hidden shadow-xl aspect-video md:aspect-[21/9]">
                       <img src={workBanner} alt={`Work ${i}`} className="w-full h-full object-cover opacity-80" />
-                    </div>
-                    <div className="space-y-6">
-                      <h4 className="text-3xl md:text-5xl font-bold tracking-tight uppercase">Trabalho Destacado</h4>
-                      <p className="text-white/40 text-base md:text-lg leading-relaxed tech-font font-light max-w-2xl">
-                        Amostra da produção artística de Kaêu Esuna, integrando movimento e estética quilombola.
-                      </p>
                     </div>
                   </div>
                 ))}
@@ -167,12 +163,8 @@ const AboutUs: React.FC = () => {
             </div>
             <div className="space-y-6">
               <h3 className="text-4xl md:text-5xl font-bold tracking-tight uppercase uppercase">QAB LIMA</h3>
-              <p className="text-white/50 text-base md:text-lg leading-relaxed tech-font font-light">
-                Artista transdisciplinar de São Paulo, Qab Lima atua nas interseções entre arte digital, escultura, pintura, animação 2D, modelagem 3D, edição de vídeo e produção musical. Sua prática investiga identidade, gênero e questões sociopolíticas, criando obras que transitam entre o físico e o digital, o sensível e o tecnológico, muitas vezes incorporando elementos interativos e referências ancestrais.
-                <br/><br/>
-                Com nove anos de experiência em publicidade como Designer, Motion Designer e UI/UX, desenvolveu forte domínio em comunicação visual, narrativa e estratégias de engajamento. Desde 2021, participa ativamente do ecossistema Web3, explorando blockchain, NFTs e comunidades onchain como extensões de sua pesquisa artística. A partir de 2025, passou também a atuar no desenvolvimento de websites, ampliando sua atuação para a criação de experiências digitais completas.
-                <br/><br/>
-                Seu trabalho é guiado pela colaboração e pela construção coletiva, buscando conectar práticas artísticas, tecnologia e comunidade em projetos que gerem crescimento, impacto cultural e novas possibilidades de imaginação.
+              <p className="text-white/50 text-base md:text-lg leading-relaxed tech-font font-light whitespace-pre-wrap">
+                {t.qabBio}
               </p>
             </div>
           </div>
@@ -182,7 +174,7 @@ const AboutUs: React.FC = () => {
               onClick={() => setQabWorksOpen(!qabWorksOpen)}
               className="flex items-center justify-between w-full group py-4 hover:opacity-80 transition-opacity"
             >
-              <h3 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase">TRABALHOS</h3>
+              <h3 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase">{t.worksTitle}</h3>
               <div className={`w-12 h-12 flex items-center justify-center border border-white/10 rounded-full transition-transform duration-500 ${qabWorksOpen ? 'rotate-180' : ''}`}>
                 <i className="fas fa-chevron-down text-sm"></i>
               </div>
@@ -194,12 +186,6 @@ const AboutUs: React.FC = () => {
                   <div key={i} className="space-y-8">
                     <div className="border border-white/10 bg-black overflow-hidden shadow-xl aspect-video md:aspect-[21/9]">
                       <img src={workBanner} alt={`Work ${i}`} className="w-full h-full object-cover opacity-80" />
-                    </div>
-                    <div className="space-y-6">
-                      <h4 className="text-3xl md:text-5xl font-bold tracking-tight uppercase">Exploração Digital</h4>
-                      <p className="text-white/40 text-base md:text-lg leading-relaxed tech-font font-light max-w-2xl">
-                        Interface entre o sensível e o tecnológico, expandindo as possibilidades do on-chain.
-                      </p>
                     </div>
                   </div>
                 ))}
@@ -216,6 +202,8 @@ const ProjectDetail: React.FC<{
   project: ArtPiece, 
   onOpenLightbox: (index: number, images: string[]) => void 
 }> = ({ project, onOpenLightbox }) => {
+  const { lang } = useLang();
+  const t = TRANSLATIONS[lang];
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -238,15 +226,9 @@ const ProjectDetail: React.FC<{
           <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none">{project.title}</h1>
         </div>
         
-        <div className="mb-16 space-y-6">
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed font-light tech-font">
-            Bosque Gracias é um território artístico familiar localizado na zona rural da Patagônia argentina, entre El Hoyo e Epuyén. Há doze anos, uma família de artistas vive e constrói esse espaço, atuando principalmente no audiovisual e em práticas ligadas à Web3. O território promove residências que conectam natureza, tecnologia e criação coletiva.
-          </p>
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed font-light tech-font">
-            Em janeiro de 2025, Kaêu e Qab participaram da residência como artistas residentes. No ano seguinte retornaram a convite da equipe, integrando o núcleo de documentação fotográfica e audiovisual. O que inicialmente seria apenas o registro da residência transformou se em um documentário sobre o próprio Bosque Gracias.
-          </p>
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed font-light tech-font">
-            Durante o período da residência, o território foi atingido por incêndios devastadores. Das cinco casas que compunham o espaço, apenas uma permaneceu de pé. Equipamentos de audiovisual, arquivos históricos e registros de memória foram perdidos. O trabalho de documentação passou a acompanhar o antes, o durante e o depois do fogo, revelando a vulnerabilidade de territórios autônomos diante do abandono estatal e de políticas ambientais insuficientes.
+        <div className="mb-16">
+          <p className="text-lg md:text-xl text-white/70 leading-relaxed font-light tech-font whitespace-pre-wrap">
+            {t.bosqueMainDesc}
           </p>
         </div>
 
@@ -255,39 +237,27 @@ const ProjectDetail: React.FC<{
         </div>
 
         <div className="mb-24 space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">Título: Dia 1</h2>
-          <p className="text-lg text-white/40 leading-relaxed font-mono tech-font">
-            O primeiro dia foi dedicado ao reconhecimento do território e de sua história. Os participantes da residência foram introduzidos ao percurso da família até a consolidação do Bosque Gracias e conduzidos pelos biomas do espaço.
-          </p>
-          <p className="text-lg text-white/40 leading-relaxed font-mono tech-font">
-            Foi visitada uma área de mata fechada com árvores que ultrapassam quatrocentos anos. A experiência instaurou um estado de escuta e presença coletiva. Em determinado momento, os participantes passaram a brincar de esconde esconde entre as árvores, ativando o espaço por meio do corpo e do jogo.
-          </p>
-          <p className="text-lg text-white/40 leading-relaxed font-mono tech-font">
-            O vídeo foi registrado por Kaêu e Qab utilizando GoPro 13 e câmera compacta Kodak. As fotografias foram realizadas com Canon 60D. A edição foi conduzida majoritariamente por Qab, em diálogo colaborativo com Kaêu.
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">{t.dia1Title}</h2>
+          <div className="text-lg text-white/40 leading-relaxed font-mono tech-font whitespace-pre-wrap">
+            {t.dia1Text}
+          </div>
         </div>
 
         <div className="mb-12 space-y-6 border-t border-white/5 pt-12">
-          <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tight">Dia 2</h2>
+          <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tight">{t.dia2Title}</h2>
           <div className="mb-8">
             <VideoPlayer src={bg_videoUrl2} />
           </div>
           <div className="space-y-6">
-            <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">Taller de Cianotipia</h3>
-            <p className="text-lg text-white/40 leading-relaxed font-mono tech-font">
-              No segundo dia ocorreu o taller de cianotipia, conduzido por Rocío, como parte das atividades oferecidas aos participantes da residência. O encontro iniciou com uma conversa sobre a técnica e apresentação de trabalhos anteriores, seguido pelo processo coletivo de criação.
-            </p>
-            <p className="text-lg text-white/40 leading-relaxed font-mono tech-font">
-              Kaêu assumiu a direção do registro audiovisual, buscando uma câmera que acompanha de perto mãos e gestos e, em outros momentos, observa à distância, como se espreitasse o processo criativo. O foco esteve na relação entre corpo, matéria, luz e tempo.
-            </p>
-            <p className="text-lg text-white/40 leading-relaxed font-mono tech-font">
-              O vídeo foi gravado com câmera compacta Kodak. A edição foi conduzida por Kaêu, com contribuições de Qab.
-            </p>
+            <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">{t.tallerTitle}</h3>
+            <div className="text-lg text-white/40 leading-relaxed font-mono tech-font whitespace-pre-wrap">
+              {t.dia2Text}
+            </div>
           </div>
         </div>
 
         <div className="mb-12 border-t border-white/5 pt-12">
-          <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tight">Artes</h2>
+          <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tight">{t.artesTitle}</h2>
         </div>
         
         <div className="mb-24 space-y-8">
@@ -297,7 +267,7 @@ const ProjectDetail: React.FC<{
           <div className="space-y-4">
             <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight">Vegetação do Bosque</h3>
             <p className="text-white/50 text-base md:text-lg leading-relaxed tech-font">
-              Trabalho criado em colaboração com @qabqabqab e @olhosdesuna, combinando fotos tiradas em Bosque Gracias, colagem digital, arte ASCII e ilustração.
+              {t.vegetacaoDesc}
             </p>
           </div>
         </div>
@@ -308,10 +278,8 @@ const ProjectDetail: React.FC<{
           </div>
           <div className="space-y-4">
             <h3 className="text-2xl md:text-4xl font-bold uppercase tracking-tight uppercase">Síntese</h3>
-            <p className="text-white/50 text-base md:text-lg leading-relaxed tech-font">
-              A obra nasce das fotografias realizadas por Kaêu e Qab durante o primeiro dia de reconhecimento do território. A partir desses registros, elementos do bosque, como flores, texturas e fragmentos orgânicos, foram isolados e transformados em adesivos digitais.
-              <br/><br/>
-              Com esses fragmentos, Kaêu e Qab criaram uma colagem que tensiona documentação e fabulação. A peça funciona como memória expandida do encontro com o território, misturando registro, jogo e reinvenção visual do bosque.
+            <p className="text-white/50 text-base md:text-lg leading-relaxed tech-font whitespace-pre-wrap">
+              {t.sinteseDesc}
             </p>
           </div>
         </div>
@@ -352,12 +320,6 @@ const ProjectDetail: React.FC<{
           </div>
         ))}
       </div>
-      
-      <div className="mb-24">
-        <p className="text-lg text-white/30 leading-relaxed font-mono tech-font">
-          Esta série explora a fragmentação da memória digital através de artefatos visuais...
-        </p>
-      </div>
     </div>
   );
 };
@@ -365,6 +327,7 @@ const ProjectDetail: React.FC<{
 const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<ArtPiece | null>(null);
   const [lightboxData, setLightboxData] = useState<{index: number, images: string[]} | null>(null);
+  const { lang } = useLang();
 
   useEffect(() => {
     document.title = selectedProject ? `3SPIRAL | ${selectedProject.title}` : "3SPIRAL | Collective";
@@ -405,7 +368,7 @@ const App: React.FC = () => {
         />
       )}
 
-      <main>
+      <main key={lang} className="animate-reveal">
         {selectedProject ? (
           <ProjectDetail project={selectedProject} onOpenLightbox={openLightbox} />
         ) : (
@@ -464,7 +427,7 @@ const App: React.FC = () => {
                 <polygon points="275.59 78.4 308.37 115.63 290.62 115.75 260.04 80.99 259.95 115.8 245.23 115.74 245.23 17.11 259.96 17.09 260.04 76.12 286.33 47.77 304.63 47.87 275.59 78.4"/>
                 <path d="M79.61,94.71c-5.51,18.04-24.03,26.06-41.82,21.69-10.92-2.69-19.53-10.65-22.89-21.47-2.81-9.03-2.71-18.75.57-27.57,6.21-16.72,23.34-23.78,40.16-20.24,21.89,4.6,30.03,27.79,23.99,47.6ZM50.03,103.51c15.25-1.82,19.08-17.7,15.64-29.96-2.41-8.6-9.95-13.63-18.74-13.46-9.31.17-16.95,6.16-18.56,15.41-1.21,6.95-.81,16.59,4.23,22.04,4.42,4.78,10.69,6.78,17.43,5.98Z"/>
                 <path d="M377.05,115.63l-22.25-.06c-5.31-.01-10.78-1.9-14.46-5.74-3.35-3.51-4.78-8.63-4.79-13.53l-.12-36.25-17.28-.03-.03-12.26,11.46-.12c3.31-.03,6.24-2.54,6.86-5.74l2.34-11.99,11.32-.03.05,17.81,27.18.03-.03,12.3-27.17.02.06,35.08c0,4.52,3.11,7.12,7.36,7.61l19.44.13.05,12.77Z"/>
-                <path d="M169.28,146.06l-.02-12.63,27.78-.03c2.03,0,3.99-1.58,3.99-3.8v-65.39c0-2.23-2.05-3.68-3.97-3.68l-17.55-.05v-12.59s22.96.16,22.96.16c7.17.05,13.09,5.48,13.1,13.11l.09,70.7c.01,8.43-60.03,14.08-14.39,14.11l-32,.1Z"/>
+                <path d="M169.28,146.06l-.02-12.63,27.78-.03c2.03,0,3.99-1.58,3.99-3.8v-65.39c0-2.23-2.05-3.68-3.97-3.68l-17.55-.05v-12.59s22.96.16,22.96.16c7.17.05,13.09,5.48,13.1,13.11l.09,70.7c.01,8.43-6.03,14.08-14.39,14.11l-32,.1Z"/>
                 <path d="M217.36,22.02c1.89,3.56,1.43,7.71-.81,10.87-2.06,2.89-5.61,4.58-9.59,4.58-6.19,0-11.09-4.26-11.35-10.18s4.17-10.67,10.42-11.07c4.52-.29,9.02,1.47,11.33,5.81Z"/>
               </g>
             </svg>

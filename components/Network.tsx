@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { SOCIAL_LINKS } from '../constants';
+import { SOCIAL_LINKS, TRANSLATIONS } from '../constants';
+import { useLang } from './LanguageContext';
 
 const CustomIcons: Record<string, React.ReactNode> = {
   'custom-x': (
@@ -34,12 +35,17 @@ const CustomIcons: Record<string, React.ReactNode> = {
 };
 
 const Network: React.FC = () => {
+  const { lang } = useLang();
+  const t = TRANSLATIONS[lang];
+
   return (
     <section id="connect" className="py-40 px-6 bg-[#030303] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
           <div className="lg:col-span-1">
-            <h2 className="text-5xl font-black tracking-tighter mb-8 uppercase leading-[0.8]">Redes</h2>
+            <h2 className="text-5xl font-black tracking-tighter mb-8 uppercase leading-[0.8]">
+              {t.networksTitle}
+            </h2>
             <p className="text-white/30 leading-relaxed font-medium pr-10 tech-font text-lg md:text-xl">
               co3spiral@gmail.com
             </p>

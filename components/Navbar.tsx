@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
+import { useLang } from './LanguageContext';
+import { Language } from '../types';
 
 interface NavbarProps {
   isInternal?: boolean;
@@ -8,6 +10,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ isInternal = false, onBack }) => {
   const [scrolled, setScrolled] = useState(false);
+  const { lang, setLang } = useLang();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,11 +41,27 @@ const Navbar: React.FC<NavbarProps> = ({ isInternal = false, onBack }) => {
     </svg>
   );
 
+  const LangSwitcher = () => (
+    <div className="flex items-center gap-2 md:gap-4 tech-font text-[10px] md:text-xs font-bold tracking-widest text-white/40">
+      {(['pt', 'es', 'en'] as Language[]).map((l, idx) => (
+        <React.Fragment key={l}>
+          <button 
+            onClick={() => setLang(l)}
+            className={`hover:text-white transition-colors uppercase ${lang === l ? 'text-white' : ''}`}
+          >
+            {l}
+          </button>
+          {idx < 2 && <span className="opacity-20 select-none">|</span>}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+
   return (
     <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${scrolled || isInternal ? 'py-4 glass-card' : 'py-8 bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        {isInternal ? (
-          <>
+        <div className="flex items-center gap-8">
+          {isInternal ? (
             <button 
               onClick={onBack}
               className="flex items-center gap-3 group text-white/50 hover:text-white transition-colors"
@@ -50,14 +69,19 @@ const Navbar: React.FC<NavbarProps> = ({ isInternal = false, onBack }) => {
               <i className="fas fa-arrow-left text-xs transition-transform group-hover:-translate-x-1"></i>
               <span className="text-[10px] uppercase font-bold tracking-widest tech-font">Back</span>
             </button>
-            <Logo />
-          </>
-        ) : (
-          <>
-            <Logo />
-            <div className="flex items-center"></div>
-          </>
-        )}
+          ) : (
+            <div className="hidden md:block">
+              <LangSwitcher />
+            </div>
+          )}
+          <Logo />
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="md:hidden">
+            <LangSwitcher />
+          </div>
+          <div className="hidden md:block w-20"></div> {/* Spacer for symmetry if needed */}
+        </div>
       </div>
     </nav>
   );
