@@ -109,7 +109,30 @@ const AboutUs: React.FC = () => {
   
   const kaeuImg = "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeicdfruzoptatjv7q7s6qzsx7w27xsvpz4jm3lqyfkqbyone3squ7a";
   const qabImg = "https://qabqabqab.github.io/imagens/foto-perfil.jpg";
-  const workBanner = "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeiegduasklqr4iempuggtu4u3sgbprfgcrczom3wfrj76xrzgwndz4";
+  
+  const kaeuWorks = [
+    {
+      title: "CLOWNMORFIA",
+      image: "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeiegduasklqr4iempuggtu4u3sgbprfgcrczom3wfrj76xrzgwndz4",
+      desc: t.clownmorfiaDesc,
+      link: "https://www.youtube.com/watch?v=7FBqaDEMyF8&feature=youtu.be",
+      linkText: t.watchHere
+    },
+    {
+      title: "UltravioletaS2",
+      image: "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeidbk3cqvwg3mrmdxoqhh3jvtislbk3clghrwft536k66otdngueua",
+      desc: t.uvs2Desc,
+      link: "https://drop.art/bm/2MwfMhhHNMwZhcJamgikKS",
+      linkText: t.checkHere
+    },
+    {
+      title: "D'Águas",
+      image: "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeibywor2qyykk6b3gbv57l3iuluoxmmcsw3efnb5jtakdtow7wuhje",
+      desc: t.daguasDesc,
+      link: "https://www.youtube.com/watch?v=N5SmAr_F63M",
+      linkText: t.watchHere
+    }
+  ];
 
   return (
     <section className="py-24 md:py-40 px-6 bg-black border-t border-white/5">
@@ -131,22 +154,37 @@ const AboutUs: React.FC = () => {
           </div>
 
           <div className="border-b border-white/5 pb-10">
-            <button 
-              onClick={() => setKaeuWorksOpen(!kaeuWorksOpen)}
-              className="flex items-center justify-between w-full group py-4 hover:opacity-80 transition-opacity"
-            >
-              <h3 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase">{t.worksTitle}</h3>
-              <div className={`w-12 h-12 flex items-center justify-center border border-white/10 rounded-full transition-transform duration-500 ${kaeuWorksOpen ? 'rotate-180' : ''}`}>
-                <i className="fas fa-chevron-down text-sm"></i>
-              </div>
-            </button>
+            <div className="flex items-center gap-4 md:gap-8 w-full">
+              <h3 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase whitespace-nowrap">{t.worksTitle}</h3>
+              <div className="flex-grow h-[1px] bg-white/20 mt-2"></div>
+              <button 
+                onClick={() => setKaeuWorksOpen(!kaeuWorksOpen)}
+                className="w-10 h-10 md:w-16 md:h-16 flex items-center justify-center border border-white/10 rounded-full hover:bg-white/10 transition-all flex-shrink-0"
+              >
+                <i className={`fas fa-chevron-down text-xs md:text-sm transition-transform duration-500 ${kaeuWorksOpen ? 'rotate-180' : ''}`}></i>
+              </button>
+            </div>
 
             {kaeuWorksOpen && (
               <div className="mt-12 space-y-24 animate-reveal">
-                {[1, 2].map((i) => (
-                  <div key={i} className="space-y-8">
-                    <div className="border border-white/10 bg-black overflow-hidden shadow-xl aspect-video md:aspect-[21/9]">
-                      <img src={workBanner} alt={`Work ${i}`} className="w-full h-full object-cover opacity-80" />
+                {kaeuWorks.map((work, idx) => (
+                  <div key={idx} className="space-y-6">
+                    <div className="border border-white/10 bg-black overflow-hidden shadow-xl aspect-video">
+                      <img src={work.image} alt={work.title} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="space-y-4">
+                      <h4 className="text-2xl md:text-4xl font-bold uppercase tracking-tight">{work.title}</h4>
+                      <p className="text-white/40 text-sm md:text-base leading-relaxed tech-font whitespace-pre-wrap">
+                        {work.desc}
+                      </p>
+                      <a 
+                        href={work.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-block text-[#3B82F6] hover:text-[#60A5FA] text-xs md:text-sm font-bold tracking-widest tech-font uppercase transition-colors"
+                      >
+                        {work.linkText}
+                      </a>
                     </div>
                   </div>
                 ))}
@@ -162,7 +200,7 @@ const AboutUs: React.FC = () => {
               <img src={qabImg} alt="Qab Lima" className="w-full h-full object-cover" />
             </div>
             <div className="space-y-6">
-              <h3 className="text-4xl md:text-5xl font-bold tracking-tight uppercase uppercase">QAB LIMA</h3>
+              <h3 className="text-4xl md:text-5xl font-bold tracking-tight uppercase">QAB LIMA</h3>
               <p className="text-white/50 text-base md:text-lg leading-relaxed tech-font font-light whitespace-pre-wrap">
                 {t.qabBio}
               </p>
@@ -170,25 +208,24 @@ const AboutUs: React.FC = () => {
           </div>
 
           <div className="border-b border-white/5 pb-10">
-            <button 
-              onClick={() => setQabWorksOpen(!qabWorksOpen)}
-              className="flex items-center justify-between w-full group py-4 hover:opacity-80 transition-opacity"
-            >
-              <h3 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase">{t.worksTitle}</h3>
-              <div className={`w-12 h-12 flex items-center justify-center border border-white/10 rounded-full transition-transform duration-500 ${qabWorksOpen ? 'rotate-180' : ''}`}>
-                <i className="fas fa-chevron-down text-sm"></i>
-              </div>
-            </button>
+            <div className="flex items-center gap-4 md:gap-8 w-full">
+              <h3 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase whitespace-nowrap">{t.worksTitle}</h3>
+              <div className="flex-grow h-[1px] bg-white/20 mt-2"></div>
+              <button 
+                onClick={() => setQabWorksOpen(!qabWorksOpen)}
+                className="w-10 h-10 md:w-16 md:h-16 flex items-center justify-center border border-white/10 rounded-full hover:bg-white/10 transition-all flex-shrink-0"
+              >
+                <i className={`fas fa-chevron-down text-xs md:text-sm transition-transform duration-500 ${qabWorksOpen ? 'rotate-180' : ''}`}></i>
+              </button>
+            </div>
 
             {qabWorksOpen && (
-              <div className="mt-12 space-y-24 animate-reveal">
-                {[1, 2].map((i) => (
-                  <div key={i} className="space-y-8">
-                    <div className="border border-white/10 bg-black overflow-hidden shadow-xl aspect-video md:aspect-[21/9]">
-                      <img src={workBanner} alt={`Work ${i}`} className="w-full h-full object-cover opacity-80" />
-                    </div>
+              <div className="mt-12 space-y-12 animate-reveal">
+                <div className="space-y-6">
+                  <div className="border border-white/10 bg-black overflow-hidden shadow-xl aspect-video md:aspect-video">
+                    <img src="https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeiegduasklqr4iempuggtu4u3sgbprfgcrczom3wfrj76xrzgwndz4" alt="Work" className="w-full h-full object-cover opacity-80" />
                   </div>
-                ))}
+                </div>
               </div>
             )}
           </div>
