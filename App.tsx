@@ -253,8 +253,34 @@ const ProjectDetail: React.FC<{
 
   const nu_gif1 = "https://assets.drop.art/4lmcby3cIFP2QzLbkgPenx-bafybeia3ghsslf44nmpozitq757xjfwc6cm24u5iofs2whbtngf7dqarx4.gif";
   const nu_gif2 = "https://assets.drop.art/4lmcby3cIFP2QzLbkgPenx-bafybeieucp6f2v4gb3o7x5ba5lwsztk3u6q7ti7ngdzbhjtngwdgjew5e4.gif";
-  const nu_placeholder = "https://assets.drop.art/4lmcby3cIFP2QzLbkgPenx-bafybeibtmhwzwtukhp6ut4ajfp3tec6te7n2omzgaf6nkwsuojeva6jqxu.png";
-  const nu_galleryImages = Array(25).fill(nu_placeholder);
+  
+  const nu_galleryImages = [
+    "https://assets.objkt.media/file/assets-003/bafybeif43es53geuv6ufsuefe5manexxustythvhfek7o3v3zckz24ezxm/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeie5ul7cik6gbpopjpwofkc7eykdnro4ycjabrkymadia6vsosmnfq/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeihl4nrkwvaz7exro6hs4iorxrzcoq3z2uh54xncaruecfpjl54gqq/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeiautlcnbu455ytzp5eokgnpzsxexx2fi2mw4k4ttryubeumlew7ji/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeidqiwxt2kugrn322ekmmj45ovxtjzayoxx3le4coczkcxiebinxre/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeihia54awxkhw3ouq57cqk36g3vnfdh27p5jym64pbhc3wgufjyzsa/artifact",
+    "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeiaqq5eadqkgwst4yyebkpcfn2gw2bbfjac4maylg5mm6eokgsqb2e",
+    "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeihnevarmlnusihphdtkvq57yy673d6md7knycqcabvsmnxm4blvnm",
+    "https://assets.objkt.media/file/assets-003/bafybeidejvu7v35vmwy64z53hhm4jldqo6pnaceteohduekxwtjbfjk3qm/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeidfipoah3a3hyyqvdfomwpopjltolnqsy4borjska3wwfu7bfufx4/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeihdoih6ylhijmch7assl2e5jxjzj6ockcvlxmpl6xwkhyywa7kd7i/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeiafv6jhkxbfcuxawfwy2tbjwuoyys6yxjp2ycodkoytvukkjijjxe/artifact",
+    "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeig37nrpqvy7t2jz2mboaahmgsjjvbmyju4gawtibzcisrwscu4ty4",
+    "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeidxcindmhh2jlm7p77dzlfyck7j6eloa2yzh2jrjkmv6qetlahb24",
+    "https://assets.objkt.media/file/assets-003/bafybeibtmhwzwtukhp6ut4ajfp3tec6te7n2omzgaf6nkwsuojeva6jqxu/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeibpo5d5swml2wfb4g5droaxfa6elu4ij3hi6qaqspbb5pahlqccy4/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeicvtweyfp5jvttz52ao5x7wa4xucvj6y2vz6v4dbunb2yoaqwzqjy/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeie4lkhdmjlxlzyd42mdmdb65osfitvbeinb4bcwulrav737a4xmgi/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeidjtt3pett6hfcx47b3r7xkmudbobe7j4odgaakqwemkgzltaqp2q/artifact",
+    "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeievxfufk2zoxlpjaq3plyzrxy4jshajjspjvk3ubi7lhd6kprduou",
+    "https://assets.objkt.media/file/assets-003/bafybeihosv7nn6gl67y4xioo3xlurwa6aqidhiya64juglrxj46jr6jrei/artifact",
+    "https://lavender-worrying-clam-733.mypinata.cloud/ipfs/bafybeiatt43kv5hgkwj25grz3bwxsuj7fddv4tschy6v7eusvwzjco6ndu",
+    "https://assets.objkt.media/file/assets-003/bafybeigogneq7lohqvekvva44u3f6yvlfqw2zofyihmj3vyzgupschdcdm/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeib5cjdw3nc5fbh22td5tuqrj2csjfpzvdmlx5q6lborvzap7i5fte/artifact",
+    "https://assets.objkt.media/file/assets-003/bafybeiajgepa5ma3ayl436pgaps55dnxdmfikfnapuyxaeznllfuyqfwpq/artifact"
+  ];
 
   if (project.id === '1') {
     return (
@@ -334,7 +360,9 @@ const ProjectDetail: React.FC<{
       </div>
 
       <div className="mb-24">
-        <p className="text-xl md:text-2xl text-white/60 leading-relaxed font-light tech-font">{project.description}</p>
+        <p className="text-lg md:text-xl text-white/60 leading-relaxed font-light tech-font whitespace-pre-wrap">
+          {t.nostalgiaFullDesc || project.description}
+        </p>
       </div>
 
       <div className="mb-24 border border-white/10 bg-black overflow-hidden shadow-2xl">
