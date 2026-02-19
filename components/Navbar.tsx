@@ -59,7 +59,8 @@ const Navbar: React.FC<NavbarProps> = ({ isInternal = false, onBack }) => {
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${scrolled || isInternal ? 'py-4 glass-card' : 'py-8 bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
+        {/* LADO ESQUERDO */}
         <div className="flex items-center gap-8">
           {isInternal ? (
             <button 
@@ -70,17 +71,35 @@ const Navbar: React.FC<NavbarProps> = ({ isInternal = false, onBack }) => {
               <span className="text-[10px] uppercase font-bold tracking-widest tech-font">Back</span>
             </button>
           ) : (
-            <div className="hidden md:block">
+            <div className="flex items-center gap-8">
+              <div className="hidden md:block">
+                <LangSwitcher />
+              </div>
+              <Logo />
+            </div>
+          )}
+        </div>
+
+        {/* LADO DIREITO */}
+        <div className="flex items-center gap-4 md:gap-8">
+          {isInternal ? (
+            <>
+              <div className="flex items-center gap-4">
+                <div className="hidden md:block">
+                  <LangSwitcher />
+                </div>
+                <div className="md:hidden">
+                  <LangSwitcher />
+                </div>
+              </div>
+              <Logo />
+            </>
+          ) : (
+            <div className="md:hidden">
               <LangSwitcher />
             </div>
           )}
-          <Logo />
-        </div>
-        <div className="flex items-center gap-4">
-          <div className="md:hidden">
-            <LangSwitcher />
-          </div>
-          <div className="hidden md:block w-20"></div> {/* Spacer for symmetry if needed */}
+          {!isInternal && <div className="hidden md:block w-20"></div>}
         </div>
       </div>
     </nav>
